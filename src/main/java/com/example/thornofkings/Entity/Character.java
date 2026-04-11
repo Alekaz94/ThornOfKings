@@ -13,11 +13,16 @@ import java.util.UUID;
 public class Character {
     @Id
     private UUID id;
-
+    private UUID accountId;
     private LocalDateTime createdAt;
+
     private String characterName;
     @Enumerated(EnumType.STRING)
     private CharacterGender characterGender;
+
+    private int level;
+    private int currentExperiencePoints;
+    private int experiencePointsToLevel;
 
     private int maxHealth;
     private int currentHealth;
