@@ -1,15 +1,16 @@
-package com.example.thornofkings.Entity;
+package com.example.thornofkings.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Entity
 public class Account {
     @Id
-    private UUID id;
+    @GeneratedValue
+    private Long id;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
