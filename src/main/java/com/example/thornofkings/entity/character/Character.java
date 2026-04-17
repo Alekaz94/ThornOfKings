@@ -1,11 +1,14 @@
 package com.example.thornofkings.entity.character;
 
 import com.example.thornofkings.entity.Account;
+import com.example.thornofkings.entity.CharacterItem;
+import com.example.thornofkings.entity.Wallet;
 import com.example.thornofkings.entity.character.enums.CharacterGender;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "characters")
@@ -13,7 +16,6 @@ public class Character {
     @Id
     @GeneratedValue
     private Long id;
-    private UUID exposedId;
     @ManyToOne
     @JoinColumn(name = "account_id")
     private Account account;
@@ -26,6 +28,13 @@ public class Character {
     private int level;
     private int currentExperiencePoints;
     private int experiencePointsToLevel;
+    private int trainingPoints;
+
+    @OneToMany(mappedBy = "character", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<CharacterItem> characterItems = new ArrayList<>();
+
+    @OneToOne(mappedBy = "character", cascade = CascadeType.ALL)
+    private Wallet wallet;
 
     @Embedded
     private Health health;
@@ -38,12 +47,10 @@ public class Character {
 
     }
 
-    public Character(Long id, UUID exposedId, Account account, LocalDateTime createdAt,
+    public Character(Account account, LocalDateTime createdAt,
                      String characterName, CharacterGender characterGender, Health health, Energy energy,
                      int level, int currentExperiencePoints, int experiencePointsToLevel,
                      BaseStats baseStats) {
-        this.id = id;
-        this.exposedId = exposedId;
         this.account = account;
         this.createdAt = createdAt;
         this.characterName = characterName;
@@ -58,10 +65,6 @@ public class Character {
 
     public Long getId() {
         return this.id;
-    }
-
-    public UUID getExposedId() {
-        return this.exposedId;
     }
 
     public Account getAccount() {
@@ -120,6 +123,17 @@ public class Character {
         this.experiencePointsToLevel = experiencePointsToLevel;
     }
 
+    public Wallet getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(Wallet wallet) {
+        this.wallet = wallet;
+        if(wallet != null && wallet.getCharacter() != this) {
+            wallet.setCharacter(this);
+        }
+    }
+
     public void takeDamage(int damage) {
         this.health.takeDamage(damage);
     }
@@ -127,5 +141,15 @@ public class Character {
     public void regenerate() {
         this.health.regenerate();
         this.energy.regenerate();
+    }
+
+    public void addItem(CharacterItem item) {
+        characterItems.add(item);
+        item.setCharacter(this);
+    }
+
+    public void removeItem(CharacterItem item) {
+        characterItems.remove(item);
+        item.setCharacter(null);
     }
 }
