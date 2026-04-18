@@ -13,7 +13,7 @@ public class AccountDtoMapper {
 
         return new AccountDto(
                 account.getId(),
-                account.getName(),
+                account.getUsername(),
                 account.getEmail(),
                 account.getCreatedAt(),
                 account.getUpdatedAt()

@@ -10,7 +10,7 @@ import jakarta.persistence.*;
 )
 public class CharacterItem {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @ManyToOne

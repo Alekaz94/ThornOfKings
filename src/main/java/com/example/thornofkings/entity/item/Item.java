@@ -1,6 +1,7 @@
 package com.example.thornofkings.entity.item;
 
 import com.example.thornofkings.entity.CharacterItem;
+import com.example.thornofkings.entity.item.embeddables.ItemStats;
 import com.example.thornofkings.entity.item.enums.ItemRarity;
 import com.example.thornofkings.entity.item.enums.ItemSlot;
 import jakarta.persistence.*;
@@ -10,7 +11,7 @@ import java.util.List;
 @Entity
 public class Item {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     private String name;

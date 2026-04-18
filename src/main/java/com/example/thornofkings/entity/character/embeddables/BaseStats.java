@@ -1,4 +1,4 @@
-package com.example.thornofkings.entity.character;
+package com.example.thornofkings.entity.character.embeddables;
 
 import jakarta.persistence.Embeddable;
 

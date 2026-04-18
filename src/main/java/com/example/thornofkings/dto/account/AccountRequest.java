@@ -4,7 +4,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-public record AccountRequest(@NotNull String name,
+public record AccountRequest(@NotNull String username,
                              @Email @NotNull String email,
                              @NotNull @Size(min = 6, message = "Password must be at least 6 characters long") String passwordHash) {
 }

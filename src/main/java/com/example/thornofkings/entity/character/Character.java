@@ -3,6 +3,9 @@ package com.example.thornofkings.entity.character;
 import com.example.thornofkings.entity.Account;
 import com.example.thornofkings.entity.CharacterItem;
 import com.example.thornofkings.entity.Wallet;
+import com.example.thornofkings.entity.character.embeddables.BaseStats;
+import com.example.thornofkings.entity.character.embeddables.Energy;
+import com.example.thornofkings.entity.character.embeddables.Health;
 import com.example.thornofkings.entity.character.enums.CharacterGender;
 import jakarta.persistence.*;
 
@@ -14,7 +17,7 @@ import java.util.List;
 @Table(name = "characters")
 public class Character {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "account_id")

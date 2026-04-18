@@ -1,33 +1,37 @@
 package com.example.thornofkings.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import com.example.thornofkings.entity.character.Character;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Account {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    private String name;
+    private String username;
     private String email;
     private String passwordHash;
+
+    @OneToMany(mappedBy = "account")
+    private List<Character> characters;
 
     public Account() {
     }
 
-    public Account(LocalDateTime createdAt, LocalDateTime updatedAt, String name, String email, String passwordHash) {
+    public Account(LocalDateTime createdAt, LocalDateTime updatedAt, String username, String email, String passwordHash, List<Character> characters) {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.name = name;
+        this.username = username;
         this.email = email;
         this.passwordHash = passwordHash;
+        this.characters = characters;
     }
 
     public Long getId() {
@@ -50,12 +54,12 @@ public class Account {
         this.updatedAt = updatedAt;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -73,4 +77,14 @@ public class Account {
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
     }
+
+
+    public List<Character> getCharacters() {
+        return characters;
+    }
+
+    public void setCharacters(List<Character> characters) {
+        this.characters = characters;
+    }
+
 }

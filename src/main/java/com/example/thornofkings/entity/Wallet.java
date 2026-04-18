@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Entity
 public class Wallet {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private Long silver = 0L;
     private Long gold = 0L;
