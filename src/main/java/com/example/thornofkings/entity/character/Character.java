@@ -82,6 +82,10 @@ public class Character {
         return this.createdAt;
     }
 
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
     public String getCharacterName() {
         return this.characterName;
     }
@@ -94,20 +98,16 @@ public class Character {
         return this.characterGender;
     }
 
-    public Health getHealth() {
-        return this.health;
+    public void setCharacterGender(CharacterGender characterGender) {
+        this.characterGender = characterGender;
     }
 
-    public Energy getEnergy() {
-        return this.energy;
+    public int getLevel() {
+        return level;
     }
 
-    public BaseStats getBaseStats() {
-        return baseStats;
-    }
-
-    public void setBaseStats(BaseStats baseStats) {
-        this.baseStats = baseStats;
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     public int getCurrentExperiencePoints() {
@@ -124,6 +124,46 @@ public class Character {
 
     public void setExperiencePointsToLevel(int experiencePointsToLevel) {
         this.experiencePointsToLevel = experiencePointsToLevel;
+    }
+
+    public int getTrainingPoints() {
+        return trainingPoints;
+    }
+
+    public void setTrainingPoints(int trainingPoints) {
+        this.trainingPoints = trainingPoints;
+    }
+
+    public Health getHealth() {
+        return this.health;
+    }
+
+    public void setHealth(Health health) {
+        this.health = health;
+    }
+
+    public Energy getEnergy() {
+        return this.energy;
+    }
+
+    public void setEnergy(Energy energy) {
+        this.energy = energy;
+    }
+
+    public BaseStats getBaseStats() {
+        return baseStats;
+    }
+
+    public void setBaseStats(BaseStats baseStats) {
+        this.baseStats = baseStats;
+    }
+
+    public List<CharacterItem> getCharacterItems() {
+        return characterItems;
+    }
+
+    public void setCharacterItems(List<CharacterItem> characterItems) {
+        this.characterItems = characterItems;
     }
 
     public Wallet getWallet() {
